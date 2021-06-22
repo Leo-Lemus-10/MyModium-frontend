@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router'
-import {Form, Button, Segment, Header, Message } from 'semantic-ui-react'
+import { useHistory } from 'react-router';
+import {Form, Button, Segment, Header, Message } from 'semantic-ui-react';
 
-const Login = (props) => {
+const LoginPage = (props) => {
 
     const [badLogin, setBadLogin] = useState(false)
     const history = useHistory()
@@ -10,7 +10,7 @@ const Login = (props) => {
 
     const checkIfUserExists = (userString) => {
 
-        return fetch(props.Backend+'users')
+        return fetch(props.backend+'users')
             .then(r => r.json())
             .then(fetchedArray => {
                 foundUserObject = fetchedArray.find(userObject => userObject.username === userString)
@@ -48,3 +48,5 @@ const Login = (props) => {
 
     )
 }
+
+export default LoginPage;
