@@ -43,26 +43,22 @@ const CreateUserPage = (props) => {
              }
             })
     }
-
-    render() {
-        return (
-            <Segment placeholder>
-                <Header as='h2'>New User</Header>
-                <Form onSubmit={register}>
-                    <Form.Input
-                        id='registerInput'
-                        icon='user'
-                        iconPosition='left'
-                        label='Username'
-                        placeholder='Username'
-                    />
-                    <Button content='Register' primary />
-                </Form>
-                {badRegister ? <Message negative header='User already exists' content="This user is already registered. Log in with this user, or create a different user." /> : null}
-            </Segment>
-
-        )
-    }
+    return (
+        <Segment placeholder>
+            <Header as='h2'>New User</Header>
+            <Form onSubmit={register}>
+                <Form.Input
+                    id='registerInput'
+                    icon='user'
+                    iconPosition='left'
+                    label='Username'
+                    placeholder='Username'
+                />
+                <Button content='Register' primary />
+            </Form>
+            {badRegister ? <Message negative header='User already exists' content="This user is already registered. Log in with this user, or create a different user." /> : null}
+        </Segment>
+    )
 }
 
 export default CreateUserPage
