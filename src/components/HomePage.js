@@ -12,6 +12,7 @@ export class HomePage extends Component {
                     <h3 className= "welcome">Welcome!</h3>
                     <p className= "website-description">Get recommendations based off your interests</p>
                     <h5 className= "homepage-prompt">Please Login or Signup to Continue</h5>
+                    
                     <div className= "homepage-btns">
                         <Link to= "/login">
                             <button className= "login-btn">Login</button>
