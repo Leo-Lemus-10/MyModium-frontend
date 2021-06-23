@@ -43,6 +43,8 @@ const CreateUserPage = (props) => {
              }
             })
     }
+
+    
     return (
         <Segment placeholder>
             <Header as='h2'>New User</Header>
@@ -59,6 +61,9 @@ const CreateUserPage = (props) => {
             {badRegister ? <Message negative header='User already exists' content="This user is already registered. Log in with this user, or create a different user." /> : null}
         </Segment>
     )
+
+    
+
 }
 
 export default CreateUserPage
