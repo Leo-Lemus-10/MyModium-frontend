@@ -31,11 +31,11 @@ const CreateUserPage = (props) => {
                     },
                     body: JSON.stringify(newUserObject),
                   }
-                fetch(props.API+'users', postConfig)
+                fetch(props.backend+'users', postConfig)
                   .then(r => r.json())
                   .then(postedUserObject => {
                       props.setUser(postedUserObject)
-                      history.push('/')
+                      history.push('/updateProfile')
                   })
              } else {
                  setBadRegister(true)

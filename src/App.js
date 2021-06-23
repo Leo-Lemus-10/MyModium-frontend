@@ -42,7 +42,7 @@ class App extends Component {
                 <LoginPage setUser={this.setUser} backend={backend}/>
               </Route>
               <Route exact path='/createUser'>
-                <CreateUserPage />
+                <CreateUserPage setUser={this.setUser} backend={backend}/>
               </Route>
               <Route exact path='/mediaDescription'>
                 <MediaDescription/>

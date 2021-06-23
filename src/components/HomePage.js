@@ -16,7 +16,7 @@ export class HomePage extends Component {
                         <Link to= "/login">
                             <button className= "login-btn">Login</button>
                         </Link>
-                        <Link to= "/signup">
+                        <Link to= "/CreateUser">
                             <button className= "signup-btn">Sign Up</button>
                         </Link>
                     </div>
