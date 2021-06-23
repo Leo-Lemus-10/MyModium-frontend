@@ -1,20 +1,43 @@
 
-import React, { useState } from 'react'
-import { Form, Button, Segment, Header, Message, Grid, Checkbox } from 'semantic-ui-react'
+import React, { useState, useRef, useEffect } from 'react'
+import { Form, Button, Segment, Header, Message, Grid, Checkbox, Label } from 'semantic-ui-react'
 
 
 const UpdateProfilePage = props => {
 
-    const [genreChecked, setGenreChecked] = useState([false, false])
-    const [mediaChecked, setMediaChecked] = useState([false, false])
-    const [platformChecked, setPlatformChecked] = useState([false, false])
+    const [genre1Checked, setGenre1Checked] = useState(false)
+    const [genre2Checked, setGenre2Checked] = useState(false)
+    const [media1Checked, setMedia1Checked] = useState(false)
+    const [media2Checked, setMedia2Checked] = useState(false)
+    const [platform1Checked, setPlatform1Checked] = useState(false)
+    const [platform2Checked, setPlatform2Checked] = useState(false)
     
+    const Toggle = (type, listType) => {
+        switch(type){
+            case 0: 
+                switch(listType){
+                    case 0: 
+                        let prevCheck = usePrevious(genre1Checked)
+                        let newCheck = !prevCheck;
+                        setGenre1Checked(newCheck)
+                    break;
+                    
+
+                }
+        }
+
+    }
     const toggle = (type, listType) => {
         // switch(type){
-        //     case 0:
+        //     case 0: 
         //         switch(listType){
-        //             case 0:
-        //                 setGenreChecked = 
+        //             case 0: 
+        //                 let prevCheck = usePrevious(genre1Checked)
+        //                 let newCheck = !prevCheck;
+        //                 setGenre1Checked(newCheck)
+        //             break;
+                    
+
         //         }
         // }
 
@@ -27,9 +50,9 @@ const UpdateProfilePage = props => {
             </div>
      
             <div className= "update-profile-page-body">
-                <Header as='h2'>Customize Your Profile</Header>
+                <h3>Customize Your Profile</h3>
                 
-                <Form>       
+                <Form inverted>       
                     <Grid>
                         <Grid.Row>
                             <Grid.Column width={7}>
@@ -40,16 +63,20 @@ const UpdateProfilePage = props => {
                                 <Form.Field>
                                     {/* <label>Genres</label> */}
                                     <Checkbox
-                                        label='Sci-fi'
-                                        onChange={toggle}
-                                        checked={genreChecked[0]}
-                                    />
+                                        label={'Sci-fi'}
+                                        onChange={toggle(0,0)}
+                                        checked={genre1Checked}
+                                    >
+                                        <Label key={'red'}>
+                                            'Sci-fi'
+                                        </Label>
+                                    </Checkbox>
                                 </Form.Field>
                                 <Form.Field>
                                     <Checkbox
                                         label='Action'
                                         onChange={toggle}
-                                        checked={genreChecked[1]}
+                                        checked={genre2Checked}
                                     />
                                 </Form.Field>
                             </Grid.Column>
@@ -64,14 +91,16 @@ const UpdateProfilePage = props => {
                                     <Checkbox
                                         label='Movies'
                                         onChange={toggle}
-                                        checked={mediaChecked[0]}
-                                    />
+                                        checked={media1Checked}
+                                    >
+                                       
+                                    </Checkbox>
                                 </Form.Field>
                                 <Form.Field>
                                     <Checkbox
                                         label='TV Shows'
                                         onChange={toggle}
-                                        checked={mediaChecked[1]}
+                                        checked={media2Checked}
                                     />
                                 </Form.Field>
                             </Grid.Column>
@@ -86,14 +115,14 @@ const UpdateProfilePage = props => {
                                     <Checkbox
                                         label='Netflix'
                                         onChange={toggle}
-                                        checked={platformChecked[0]}
+                                        checked={platform1Checked}
                                     />
                                 </Form.Field>
                                 <Form.Field>
                                     <Checkbox
                                         label='Hulu'
                                         onChange={toggle}
-                                        checked={platformChecked[1]}
+                                        checked={platform2Checked}
                                     />
                                 </Form.Field>
                             </Grid.Column>
@@ -154,10 +183,13 @@ const UpdateProfilePage = props => {
                             </Form.Field>
                         </Grid.Column> */}
                     </Grid>
+                        <br></br>
+                        <br></br>
                             <Form.Field>
                                 <label>Bio</label>
                                 <textarea placeholder= "Tell Me About Yourself"></textarea>
                             </Form.Field>
+                            <br></br>
                             <Form.Field>
                                 <label>Profile Picture URL</label>
                                 <input placeholder= "Picture URL"></input>
@@ -173,6 +205,15 @@ const UpdateProfilePage = props => {
     
     
 }
+
+function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+}
+
 
 
 

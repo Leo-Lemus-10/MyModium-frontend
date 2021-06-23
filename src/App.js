@@ -13,7 +13,11 @@ const backend = 'http://localhost:3000/'
 class App extends Component {
   state = {
     username: '',
-    userId: null
+    userId: null,
+    mediaSelected: {},
+    genreList: [],
+    mediaList: [],
+    platformList: []
 
   }
 
@@ -21,6 +25,12 @@ class App extends Component {
     this.setState({
       username: userObject.username,
       userId: userObject.id
+    })
+  }
+
+  setMedia = (mediaObject) => {
+    this.setState({
+      mediaSelected: mediaObject
     })
   }
 

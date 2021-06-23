@@ -14,3 +14,16 @@
   color: white;
 }
 
+.update-profile-page-body {
+  color: white;
+}
+
+.ui.checkbox input[type=checkbox]{
+  color: white;
+}
+
+div.ui.checkbox {
+  color: white;
+}
+
+@input : 'default'
