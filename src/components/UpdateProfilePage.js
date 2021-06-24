@@ -5,43 +5,56 @@ import { Form, Button, Segment, Header, Message, Grid, Checkbox, Label } from 's
 
 const UpdateProfilePage = props => {
 
-    const [genre1Checked, setGenre1Checked] = useState(false)
-    const [genre2Checked, setGenre2Checked] = useState(false)
-    const [media1Checked, setMedia1Checked] = useState(false)
-    const [media2Checked, setMedia2Checked] = useState(false)
-    const [platform1Checked, setPlatform1Checked] = useState(false)
-    const [platform2Checked, setPlatform2Checked] = useState(false)
+    const [genre1Checked, setGenre1Checked] = useState()
+    const [genre2Checked, setGenre2Checked] = useState()
+    const [media1Checked, setMedia1Checked] = useState()
+    const [media2Checked, setMedia2Checked] = useState()
+    const [platform1Checked, setPlatform1Checked] = useState()
+    const [platform2Checked, setPlatform2Checked] = useState()
     
-    const Toggle = (type, listType) => {
+    let [checked, setChecked] = useState({})
+
+    useEffect(() => {
+        let checked = {
+            gen1: false,
+            gen2: false,
+            med1: false,
+            med2: false, 
+            plat1: false,
+            plat2: false
+        }
+        setChecked(checked)
+    }, []
+    )
+    
+    
+    
+    const toggle = (e, type, listType) => {
+        let newCheck = e.target.checked
         switch(type){
             case 0: 
                 switch(listType){
                     case 0: 
-                        let prevCheck = usePrevious(genre1Checked)
-                        let newCheck = !prevCheck;
-                        setGenre1Checked(newCheck)
+                        setChecked({...checked, gen1: newCheck})
                     break;
-                    
-
+                    case 1:
+                        setChecked({...checked, gen1: newCheck})
+                    break;
                 }
+            break;
+            switch(listType){
+                case 0: 
+                    setChecked({...checked, gen1: newCheck})
+                break;
+                case 1:
+                    setChecked({...checked, gen1: newCheck})
+                break;
+            }
+
         }
 
     }
-    const toggle = (type, listType) => {
-        // switch(type){
-        //     case 0: 
-        //         switch(listType){
-        //             case 0: 
-        //                 let prevCheck = usePrevious(genre1Checked)
-        //                 let newCheck = !prevCheck;
-        //                 setGenre1Checked(newCheck)
-        //             break;
-                    
-
-        //         }
-        // }
-
-    }
+    
     
     return (
         <div className= "update-profile-page">
@@ -62,15 +75,18 @@ const UpdateProfilePage = props => {
                                 <h3>Genres</h3>
                                 <Form.Field>
                                     {/* <label>Genres</label> */}
-                                    <Checkbox
-                                        label={'Sci-fi'}
-                                        onChange={toggle(0,0)}
-                                        checked={genre1Checked}
+                                    <input type= "checkbox"
+                                    checked = {checked.gen1} onChange={(event) => toggle(event,0,0)}>
+                                    </input>
+                                    <label>Sci-Fi</label>
+                                    {/* <Checkbox
+                                        onChange={(event)=> {toggle(event,0,0)}}
+                                        checked={checked.gen1}
                                     >
                                         <Label key={'red'}>
                                             'Sci-fi'
                                         </Label>
-                                    </Checkbox>
+                                    </Checkbox> */}
                                 </Form.Field>
                                 <Form.Field>
                                     <Checkbox
