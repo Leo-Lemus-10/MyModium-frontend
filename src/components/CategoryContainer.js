@@ -6,7 +6,7 @@ export class CategoryContainer extends Component {
     render() {
         return (
             <Card.Group>
-                {this.props.categoriesList.map(categoryObject => <CategoryCard key={categoryObject.id} categoryObject={categoryObject})}
+                {this.props.categoriesList.map(categoryObject => <CategoryCard key={categoryObject.id} categoryObject={categoryObject}/>)}
             </Card.Group>
         )
     }
