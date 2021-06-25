@@ -59,6 +59,7 @@ const CreateUserPage = (props) => {
                 <Button content='Register' primary />
             </Form>
             {badRegister ? <Message negative header='User already exists' content="This user is already registered. Log in with this user, or create a different user." /> : null}
+            <Button content='Existing User?' secondary onClick={() => history.push('/login')}/>
         </Segment>
     )
 

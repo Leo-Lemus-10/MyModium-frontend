@@ -8,8 +8,8 @@ const NavBar = (props) => {
     const [loginPrompt, setLoginPrompt] = useState(false)
 
     return (
-        <div style={{paddingBottom: '1%' }}>
-            <Menu>
+        <div style={{paddingBottom: '1%' } }>
+            <Menu fluid widths={4}>
                 <Menu.Item
                     name='Profile Page'
                     onClick={() => {
@@ -50,7 +50,9 @@ const NavBar = (props) => {
                 </Menu.Item>
                 <Menu.Item
                     name='Login'
-                    onClick={() => {props.username === '' ? history.push("/login") : props.setUser({username: '', userId: null, selectedUser: {}})}}
+                    onClick={() => {props.username === '' ? history.push('/login') :
+                        history.push('/')
+                        props.setUser({username: '', userId: null, selectedUser: {}})}}
                 >
                     {props.username === '' ? 'Login' : 'Log Out'}
                 </Menu.Item>

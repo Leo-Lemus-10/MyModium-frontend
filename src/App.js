@@ -8,6 +8,7 @@ import CreateUserPage from './components/CreateUserPage';
 import MediaDescription from './components/MediaDescription';
 import ProfilePage from './components/ProfilePage';
 import UpdateProfilePage from './components/UpdateProfilePage';
+import NavBar from "./components/NavBar";
 
 const backend = 'http://localhost:3000/'
 class App extends Component {
@@ -58,6 +59,11 @@ class App extends Component {
     })
   }
 
+  setSelectedUser = (userObject) => {
+    this.setState({
+      selectedUser: userObject
+    })
+  }
   setMedia = (mediaObject) => {
     this.setState({
       mediaSelected: mediaObject
@@ -70,6 +76,10 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
+        <NavBar
+              setUser={this.setUser}
+              username={this.state.username}
+            />
           <header className="App-header">
             <Route path='/'>
               {/* <TitleBar?/> */}
@@ -85,16 +95,16 @@ class App extends Component {
                 <CreateUserPage setUser={this.setUser} backend={backend}/>
               </Route>
               <Route exact path='/mediaDescription'>
-                <MediaDescription mediaSelected={this.state.mediaSelected}/>
+                <MediaDescription setUser={this.setUser} username={this.state.username}  mediaSelected={this.state.mediaSelected}/>
               </Route>
               <Route exact path='/profile'>
-                <ProfilePage setUser={this.setUser} selectedUser={this.state.selectedUser}/>
+                <ProfilePage setUser={this.setUser} username={this.state.username}  selectedUser={this.state.selectedUser}/>
               </Route>
               <Route exact path='/updateProfile'>
-                <UpdateProfilePage setUser={this.setUser} currentUserId = {this.state.userId} backend={backend}/>
+                <UpdateProfilePage setSelectedUser={this.setSelectedUser} username={this.state.username}  currentUserId = {this.state.userId} backend={backend}/>
               </Route>
               <Route exact path='/recommendations'>
-                <RecommendationPage setUser={this.setUser} genreList={this.state.genreList} setMedia={this.setMedia} categoryList={this.state.categoryList} mediaList={this.state.mediaList}/>
+                <RecommendationPage username={this.state.username} setUser={this.setUser} genreList={this.state.genreList} setMedia={this.setMedia} categoryList={this.state.categoryList} mediaList={this.state.mediaList}/>
               </Route>
             </Switch>
           </header>

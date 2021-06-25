@@ -8,7 +8,7 @@ export class HomePage extends Component {
                 <div className= "top-bar">
                     <h1 className= "title">My Modium</h1>                    
                 </div>
-                <div classname= "homepage-body">
+                <div className= "homepage-body">
                     <h3 className= "welcome">Welcome!</h3>
                     <p className= "website-description">Get recommendations based off your interests</p>
                     <h5 className= "homepage-prompt">Please Login or Signup to Continue</h5>

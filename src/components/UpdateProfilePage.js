@@ -3,11 +3,13 @@ import React, { useState, useRef, useEffect } from 'react'
 import { Form, Button, Segment, Header, Message, Grid, Checkbox, Label } from 'semantic-ui-react'
 import CreateUserPage from './CreateUserPage'
 import NavBar from './NavBar'
+import { useHistory } from 'react-router';
 
 const UpdateProfilePage = props => {
 
     let [checked, setChecked] = useState({})
     const [newUser, setNewUser] = useState({})
+    const history = useHistory()
 
     useEffect(() => {
         let checked = {
@@ -49,8 +51,10 @@ const UpdateProfilePage = props => {
           }
         )
           .then((r) => r.json())
-          .then((userObj) => console.log(userObj));
-        
+          .then((userObj) => {
+              console.log(userObj)
+              props.setSelectedUser(userObj)
+            });   
     }
 
     // let foundObject
@@ -159,28 +163,24 @@ const UpdateProfilePage = props => {
     
     
     return (
-        <Grid>
-            <Grid.Row width={16}>
-                <NavBar
-                setUser={props.setUser}
-                username={props.username}
-                />
-            </Grid.Row>
         <div className= "update-profile-page">
             <div className= "top-bar">
                     <h1 className= "title">My Modium</h1>                    
             </div>
      
             <div className= "update-profile-page-body">
-                <h3>Customize Your Profile</h3>
-                
-                <Form onSubmit = {updtUser} inverted >       
+                <h3>Customize Your Profile</h3>    
+            <Grid>
+                <Form onSubmit={()=> {
+                    updtUser()
+                    history.push('/recommendations')
+                }} inverted>       
                     
                         <Grid.Row>
-                            <Grid.Column width={7}>
+                            <Grid.Column width={8}>
                             <h4>Select as many as you want!</h4> 
                             </Grid.Column>
-                            <Grid.Column width={5}>
+                            <Grid.Column width={8}>
                                 <h3 className="genre-profile-page">Genres</h3>
                                 <Form.Field>
                                     <input type= "checkbox"
@@ -251,11 +251,10 @@ const UpdateProfilePage = props => {
                                 <Button type= 'submit' >Submit</Button>
                             </Form.Field>
                 </Form>
-            </div>
-         
+            </Grid>
+            </div>     
         </div>
 
-    </Grid>
     )
     
     

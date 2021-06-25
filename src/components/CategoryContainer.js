@@ -11,8 +11,7 @@ const CategoryContainer = (props) => {
                     {categoryMapper.map(categoryObject => <CategoryCard key={categoryObject.id} genreList={props.genreList} setMedia={props.setMedia} mediaList={props.mediaList} categoryObject={categoryObject}/>)}
                 </Grid.Row>
             </Grid.Column>
-        </Grid>
-        
+        </Grid>  
     )
 }
 

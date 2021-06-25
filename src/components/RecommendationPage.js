@@ -8,15 +8,7 @@ const RecommendationPage = (props) =>  {
     return (
         <Grid>
             <Grid.Column width={16}>
-                <Segment>
-                    <NavBar
-                    setUser={props.setUser}
-                    username={props.username}
-                    />
-                </Segment>
-                <Segment>
                     <CategoryContainer genreList={props.genreList} mediaList={props.mediaList} categoryList={props.categoryList} setMedia={props.setMedia}/>
-                </Segment>
             </Grid.Column>
         </Grid>
     )

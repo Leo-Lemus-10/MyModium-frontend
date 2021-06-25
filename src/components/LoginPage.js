@@ -43,6 +43,7 @@ const LoginPage = (props) => {
                 />
                 <Button type='submit' content='Login' primary />
             </Form>
+                <Button content='New User?' secondary onClick={() => history.push('/createUser')}/>
             {badLogin ? <Message negative header='User does not exist' content="This user is not registered. Try again, or register a new user" /> : null}
         </Segment>
 
