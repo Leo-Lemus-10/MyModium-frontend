@@ -1,20 +1,25 @@
 import { Card, Image } from "semantic-ui-react";
 import React from 'react'
-import {useHistory} from 'react-router'
+import { useHistory } from 'react-router'
 
-const MediaCard = (props) => (
+const MediaCard = (props) => {
     
     const history = useHistory()
-
-    <Card>
+    const newMediaObject = props.mediaObject
+    return(
         <div onClick={() => {
-            props.setMedia(mediaObject)
+            props.setMedia(newMediaObject)
             history.push('/mediaDescription')
         }}>
-            <Image src={props.mediaObject.picture} size='medium'/>
-            <Card.Header>{props.mediaObject.name}</Card.Header>
+            <Card color= 'blue' image={props.mediaObject.picture}>
+                <Image src={props.mediaObject.picture} size='medium'/>
+                <Card.Content>
+                    <Card.Description>{props.mediaObject.name}</Card.Description>
+                </Card.Content> 
+            </Card>
+            
         </div>
-    </Card>
-)
+    )
+}
 
 export default MediaCard

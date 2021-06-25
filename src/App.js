@@ -14,17 +14,47 @@ class App extends Component {
   state = {
     username: '',
     userId: null,
+    selectedUser: {},
     mediaSelected: {},
-    genreList: [],
     mediaList: [],
-    platformList: []
+    userList: [],
+    genreList: [],
+    platformList: [],
+    categoryList: []
 
+  }
+
+  componentDidMount() {
+    this.fetchLists()
+  }
+
+  fetchLists = () => {
+    fetch(backend+'media')
+    .then(r => r.json())
+    .then(mediaList => this.setState({mediaList}))
+
+    fetch(backend+'users')
+    .then(r => r.json())
+    .then(userList => this.setState({userList}))
+
+    fetch(backend+'genres')
+    .then(r => r.json())
+    .then(genreList => this.setState({genreList}))
+
+    fetch(backend+'platforms')
+    .then(r => r.json())
+    .then(platformList => this.setState({platformList}))
+
+    fetch(backend+'categories')
+    .then(r => r.json())
+    .then(categoryList => this.setState({categoryList}))
   }
 
   setUser = (userObject) => {
     this.setState({
       username: userObject.username,
-      userId: userObject.id
+      userId: userObject.id,
+      selectedUser: userObject
     })
   }
 
@@ -55,16 +85,16 @@ class App extends Component {
                 <CreateUserPage setUser={this.setUser} backend={backend}/>
               </Route>
               <Route exact path='/mediaDescription'>
-                <MediaDescription/>
+                <MediaDescription mediaSelected={this.state.mediaSelected}/>
               </Route>
               <Route exact path='/profile'>
-                <ProfilePage />
+                <ProfilePage setUser={this.setUser} selectedUser={this.state.selectedUser}/>
               </Route>
               <Route exact path='/updateProfile'>
-                <UpdateProfilePage />
+                <UpdateProfilePage setUser={this.setUser} currentUserId = {this.state.userId} backend={backend}/>
               </Route>
-              <Route>
-                <RecommendationPage />
+              <Route exact path='/recommendations'>
+                <RecommendationPage setUser={this.setUser} genreList={this.state.genreList} setMedia={this.setMedia} categoryList={this.state.categoryList} mediaList={this.state.mediaList}/>
               </Route>
             </Switch>
           </header>

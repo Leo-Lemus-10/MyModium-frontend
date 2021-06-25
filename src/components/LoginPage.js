@@ -22,7 +22,7 @@ const LoginPage = (props) => {
         .then(() => {
              if (foundUserObject !== undefined) {
                 props.setUser(foundUserObject)
-                history.push('/')
+                history.push('/recommendations')
              } else {
                  setBadLogin(true)
                  setTimeout(() => setBadLogin(false), 3000)
